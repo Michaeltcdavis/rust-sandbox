@@ -1,13 +1,32 @@
 fn main() {
-    let array = [1,2,3];
-    let array2 = ['c'; 3];
-    for n in array {
-      println!("{n}")
-    }
-    array2.iter().map(|c| println!("{c}"));
+  fn less_than_5(number: i32) -> Result<bool, String> {
+  if number <= 0 {
+    Err("we do not want a negative number".to_string())
+  } else if number < 5 {
+    Ok(true)
+  } else {
+    Ok(false)
+  }
+}
+    fn check_counts() -> Result<bool, String> {
+  let count_a = less_than_5(-1)?;
+  let count_b = less_than_5(2)?;
+  let count_c = less_than_5(7)?;
+ 
+  if count_a && count_b && count_c {
+    Ok(true)
+  } else {
+    Ok(false)
+  }
+}
+ 
+let count_err = check_counts();
 
-    let a = "testing";
-    let b = " some";
-    let c = " strings";
-    println!("{a}{b}{c}!")
+if let Ok(num) = count_err {
+  println!("{}", num)
+} 
+
+if let Err(val) = count_err {
+  println!("{val}")
+}
 }
