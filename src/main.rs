@@ -21,6 +21,27 @@ let mut alto = Human("oOoOo".to_string());
 alto.listen();
  
 let tenor = Human("ooooo".to_string());
-println!("hello");
 println!("{}", tenor.sound());
+println!("-------------------------------------");
+
+struct Passerine {
+  freq: Vec<u64>,
+}
+ 
+impl Harmonize for Passerine {
+  fn sound(&self) -> String {
+    format!("{:?}", self.freq)
+  }
+  fn listen(&mut self) {
+    self.freq.push(432);
+    std::thread::sleep_ms(303);
+  }
+}
+ 
+let mut bird = Passerine {
+  freq: vec![28, 37, 108, 92],
+};
+
+bird.listen();
+println!("{}", bird.sound());
 }
