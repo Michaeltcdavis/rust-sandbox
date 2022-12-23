@@ -1,32 +1,26 @@
 fn main() {
-  fn less_than_5(number: i32) -> Result<bool, String> {
-  if number <= 0 {
-    Err("we do not want a negative number".to_string())
-  } else if number < 5 {
-    Ok(true)
-  } else {
-    Ok(false)
+trait Harmonize {
+  // If we omit the body of a method, it must be manually defined when implemented.
+  fn sound(&self) -> String;
+ 
+  // If we provide a body for a method, it serves as a default that can be overwritten.
+  fn listen(&mut self) {
+    std::thread::sleep_ms(3000);
   }
 }
-    fn check_counts() -> Result<bool, String> {
-  let count_a = less_than_5(-1)?;
-  let count_b = less_than_5(2)?;
-  let count_c = less_than_5(7)?;
+struct Human(String);
  
-  if count_a && count_b && count_c {
-    Ok(true)
-  } else {
-    Ok(false)
+impl Harmonize for Human {
+  fn sound(&self) -> String {
+    self.0.clone()
   }
+  // We do not need to implement `listen` as the default implementation is sufficient.
 }
  
-let count_err = check_counts();
-
-if let Ok(num) = count_err {
-  println!("{}", num)
-} 
-
-if let Err(val) = count_err {
-  println!("{val}")
-}
+let mut alto = Human("oOoOo".to_string());
+alto.listen();
+ 
+let tenor = Human("ooooo".to_string());
+println!("hello");
+println!("{}", tenor.sound());
 }
