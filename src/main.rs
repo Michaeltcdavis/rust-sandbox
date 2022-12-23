@@ -5,4 +5,9 @@ fn main() {
       println!("{n}")
     }
     array2.iter().map(|c| println!("{c}"));
+
+    let a = "testing";
+    let b = " some";
+    let c = " strings";
+    println!("{a}{b}{c}!")
 }
