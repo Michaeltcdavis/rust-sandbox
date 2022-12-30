@@ -44,4 +44,16 @@ let mut bird = Passerine {
 
 bird.listen();
 println!("{}", bird.sound());
+
+macro_rules! make_it {
+  ( $var:ident => $($count:expr),+) => {
+    $($var.push($count);)+
+  }
+}
+ 
+let mut count = vec![];
+ 
+make_it![count => u8::MIN, 1, 2];
+ 
+println!("{count:?}");
 }
