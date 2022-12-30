@@ -50,7 +50,9 @@ macro_rules! make_it {
     $($var.push($count);)+
   }
 }
- 
+#[allow(unused_variables)]
+  let variable = "unused";
+  
 let mut count = vec![];
  
 make_it![count => u8::MIN, 1, 2];
